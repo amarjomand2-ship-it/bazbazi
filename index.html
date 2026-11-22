@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>بازبازی | BAZBAZI Arcade</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
+:root{--bg:#080b14;--panel:#101727;--panel2:#151f32;--text:#eef4ff;--muted:#9aa9c2;--cyan:#35e7ff;--pink:#ff4fd8;--green:#8cff6b;--line:#26334d}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#142447 0,transparent 40%),radial-gradient(ellipse at 90% 15%,#30143b 0,transparent 35%),var(--bg);color:var(--text);font-family:Vazirmatn,Tahoma,sans-serif;min-height:100vh}
+button{font:inherit;cursor:pointer}.wrap{width:min(1120px,92%);margin:auto}.top{display:flex;align-items:center;justify-content:space-between;padding:22px 0;gap:12px}.brand{font-size:27px;font-weight:900;letter-spacing:-1px}.brand span{color:var(--cyan);text-shadow:0 0 18px #35e7ff88}.pill{border:1px solid var(--line);background:#111a2b;color:var(--muted);padding:8px 13px;border-radius:99px;font-size:13px}.hero{padding:32px 0 24px;text-align:center}.eyebrow{color:var(--green);font-weight:700;font-size:13px;letter-spacing:1px}.hero h1{font-size:clamp(32px,6vw,58px);line-height:1.2;margin:12px 0}.hero h1 b{color:var(--cyan);text-shadow:0 0 25px #35e7ff55}.hero p{color:var(--muted);margin:0 auto 22px;max-width:600px}.stats{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}.stat{background:#101827cc;border:1px solid var(--line);border-radius:14px;padding:10px 17px;min-width:125px}.stat strong{display:block;color:var(--cyan);font-size:20px}.stat small{color:var(--muted)}.section-head{display:flex;justify-content:space-between;align-items:center;margin:28px 0 14px}.section-head h2{margin:0;font-size:21px}.games{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.game-card{background:linear-gradient(145deg,#151f32,#0d1422);border:1px solid var(--line);border-radius:20px;padding:17px;transition:.2s;position:relative;overflow:hidden}.game-card:hover{transform:translateY(-4px);border-color:#35e7ff99;box-shadow:0 12px 35px #0007,0 0 20px #35e7ff14}.game-icon{height:112px;border-radius:14px;display:grid;place-items:center;font-size:52px;background:radial-gradient(circle,#25395b,#10192a 70%);margin-bottom:14px}.game-card h3{margin:0 0 4px}.game-card p{margin:0 0 14px;color:var(--muted);font-size:13px}.btn{border:0;border-radius:12px;padding:10px 16px;background:linear-gradient(100deg,var(--cyan),#8d8cff);color:#06101b;font-weight:800}.btn.secondary{background:#1b2940;color:var(--text);border:1px solid var(--line)}.game-card .btn{width:100%}.game-area{margin:24px 0 50px;background:#0d1524;border:1px solid var(--line);border-radius:22px;padding:20px;display:none}.game-area.active{display:block}.game-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.game-top h2{margin:0}.game-tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.scoreline{color:var(--muted);margin:12px 0}.scoreline strong{color:var(--green)}canvas{display:block;width:min(100%,520px);height:auto;aspect-ratio:1/1;background:#070d18;border:1px solid #2a3b5b;border-radius:14px;margin:15px auto;touch-action:none}.controls{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:12px auto}.controls button{min-width:52px;background:#1a2940;color:var(--text);border:1px solid #344766;border-radius:10px;padding:9px 14px}.hint{text-align:center;color:var(--muted);font-size:13px}.grid2048{width:min(100%,420px);margin:15px auto;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;background:#18243a;padding:9px;border-radius:14px;touch-action:pan-y}.tile{aspect-ratio:1;display:grid;place-items:center;border-radius:9px;background:#26354e;font-size:clamp(18px,4vw,28px);font-weight:900;color:#fff}.tile[data-v="2"]{background:#31506a}.tile[data-v="4"]{background:#347c88}.tile[data-v="8"]{background:#168f9c}.tile[data-v="16"]{background:#a34eaa}.tile[data-v="32"]{background:#c94d91}.tile[data-v="64"]{background:#e05d6e}.tile[data-v="128"],.tile[data-v="256"],.tile[data-v="512"]{background:#d99b38;color:#101522}.memory{display:grid;grid-template-columns:repeat(4,minmax(55px,90px));gap:9px;justify-content:center;margin:20px auto}.memory button{aspect-ratio:1;border-radius:12px;background:#1b2940;border:1px solid #354b6d;color:var(--cyan);font-size:28px}.memory button.open{background:#243b56}.footer{text-align:center;color:#687993;padding:25px 0 35px;font-size:12px}.toast{color:var(--green);text-align:center;min-height:24px}.hidden{display:none!important}
+@media(max-width:760px){.games{grid-template-columns:1fr 1fr}.top{padding:15px 0}.brand{font-size:22px}.hero{padding-top:20px}.game-area{padding:13px}}
+@media(max-width:480px){.games{grid-template-columns:1fr}.game-icon{height:90px}.stat{min-width:105px}.section-head h2{font-size:18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><div class="brand">🎮 <span>BAZ</span>BAZI</div><div style="display:flex;gap:8px;align-items:center"><span class="pill">ARCADE • نسخه ۱</span><button class="btn secondary" id="soundToggle">🔊 صدا روشن</button></div></header>
+<section class="hero"><div class="eyebrow">دنیای بازی‌های کوچک، هیجان‌های بزرگ</div><h1>آماده‌ای رکورد <b>بزنی؟</b></h1><p>یک بازی انتخاب کن، امتیاز بگیر و رکورد خودت را بشکن. بازبازی روی موبایل و کامپیوتر قابل اجراست.</p><div class="stats"><div class="stat"><strong id="gamesPlayed">۰</strong><small>بازی انجام‌شده</small></div><div class="stat"><strong id="totalBest">۰</strong><small>مجموع رکوردها</small></div><div class="stat"><strong>۳</strong><small>بازی آماده</small></div></div></section>
+<div class="section-head"><h2>🕹️ انتخاب بازی</h2><span class="pill">رکوردها روی همین دستگاه ذخیره می‌شوند</span></div>
+<section class="games">
+<article class="game-card"><div class="game-icon">🐍</div><h3>مار بازی</h3><p>غذا جمع کن و مراقب برخورد با دیوار و خودت باش!</p><button class="btn" data-game="snake">شروع بازی</button></article>
+<article class="game-card"><div class="game-icon">🔢</div><h3>۲۰۴۸</h3><p>خانه‌های هم‌شماره را ترکیب کن و عدد بزرگ‌تر بساز.</p><button class="btn" data-game="2048">شروع بازی</button></article>
+<article class="game-card"><div class="game-icon">🧠</div><h3>حافظه</h3><p>جفت شکل‌های یکسان را پیدا کن؛ با کمترین حرکت!</p><button class="btn" data-game="memory">شروع بازی</button></article>
+</section>
+<section class="game-area" id="gameArea">
+<div class="game-top"><h2 id="gameTitle">بازی</h2><div class="game-tools"><span class="pill">رکورد: <b id="bestScore">۰</b></span><button class="btn secondary" id="restart">شروع دوباره</button><button class="btn secondary" id="closeGame">بستن ✕</button></div></div>
+<div class="scoreline">امتیاز: <strong id="score">۰</strong> <span id="gameStatus"></span></div>
+<div id="snakePanel" class="hidden"><canvas id="snakeCanvas" width="480" height="480" aria-label="صفحه مار بازی"></canvas><div class="controls"><button data-dir="up">▲</button></div><div class="controls"><button data-dir="left">◀</button><button data-dir="down">▼</button><button data-dir="right">▶</button></div><p class="hint">با کلیدهای جهت‌دار یا دکمه‌های لمسی بازی کن.</p></div>
+<div id="2048Panel" class="hidden"><div id="board2048" class="grid2048"></div><p class="hint">با کلیدهای جهت‌دار، WASD یا کشیدن انگشت روی صفحه حرکت کن.</p></div>
+<div id="memoryPanel" class="hidden"><div id="memoryBoard" class="memory"></div><p class="hint">دو کارت را باز کن و جفت‌های مشابه را پیدا کن.</p></div>
+<div class="toast" id="toast"></div>
+</section>
+<div class="footer">ساخته‌شده برای بازی و یادگیری • BAZBAZI</div>
+</div>
+<script>
+(()=>{
+const $=id=>document.getElementById(id), fa=n=>Number(n).toLocaleString('fa-IR');
+let soundOn=true,audioCtx=null,current='',timer=null,score=0,played=Number(localStorage.getItem('bz_played')||0);
+const bests=JSON.parse(localStorage.getItem('bz_bests')||'{}');
+function sound(freq=500,duration=.08,type='sine'){if(!soundOn)return;try{audioCtx=audioCtx||new(window.AudioContext||window.webkitAudioContext)();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=type;o.frequency.value=freq;g.gain.setValueAtTime(.055,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+duration);o.connect(g);g.connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+duration)}catch(e){}}
+function refreshStats(){$('gamesPlayed').textContent=fa(played);$('totalBest').textContent=fa(Object.values(bests).reduce((a,b)=>a+b,0));$('bestScore').textContent=fa(bests[current]||0)}
+function setScore(n){score=n;$('score').textContent=fa(n);if(n>(bests[current]||0)){bests[current]=n;localStorage.setItem('bz_bests',JSON.stringify(bests));refreshStats()}}
+function stop(){if(timer){clearInterval(timer);timer=null}}
+function showGame(name){stop();current=name;score=0;$('score').textContent='۰';$('toast').textContent='';['snakePanel','2048Panel','memoryPanel'].forEach(x=>$(x).classList.add('hidden'));$('gameArea').classList.add('active');$('gameTitle').textContent={snake:'🐍 مار بازی','2048':'🔢 ۲۰۴۸',memory:'🧠 بازی حافظه'}[name];$(name==='snake'?'snakePanel':name==='2048'?'2048Panel':'memoryPanel').classList.remove('hidden');refreshStats();if(name==='snake')startSnake();if(name==='2048')start2048();if(name==='memory')startMemory();$('gameArea').scrollIntoView({behavior:'smooth',block:'start'})}
+document.querySelectorAll('[data-game]').forEach(b=>b.addEventListener('click',()=>{played++;localStorage.setItem('bz_played',played);refreshStats();showGame(b.dataset.game);sound(620)}));
+$('closeGame').onclick=()=>{$('gameArea').classList.remove('active');stop();current=''};
+$('restart').onclick=()=>{if(current)showGame(current);sound(420)};
+$('soundToggle').onclick=()=>{soundOn=!soundOn;$('soundToggle').textContent=soundOn?'🔊 صدا روشن':'🔇 صدا خاموش';if(soundOn)sound(650)};
+function endGame(msg){stop();$('toast').textContent=msg;sound(170,.25,'sawtooth')}
+// SNAKE
+const canvas=$('snakeCanvas'),ctx=canvas.getContext('2d');let snake,food,dir,nextDir,snakeAlive;
+function startSnake(){stop();snake=[{x:10,y:10},{x:9,y:10},{x:8,y:10}];dir={x:1,y:0};nextDir=dir;snakeAlive=true;placeFood();setScore(0);drawSnake();timer=setInterval(tickSnake,115)}
+function placeFood(){do{food={x:Math.floor(Math.random()*20),y:Math.floor(Math.random()*20)}}while(snake.some(p=>p.x===food.x&&p.y===food.y))}
+function drawSnake(){ctx.fillStyle='#070d18';ctx.fillRect(0,0,480,480);ctx.strokeStyle='#14243a';for(let i=0;i<=20;i++){ctx.beginPath();ctx.moveTo(i*24,0);ctx.lineTo(i*24,480);ctx.moveTo(0,i*24);ctx.lineTo(480,i*24);ctx.stroke()}ctx.fillStyle='#ff4fd8';ctx.shadowColor='#ff4fd8';ctx.shadowBlur=15;ctx.beginPath();ctx.arc(food.x*24+12,food.y*24+12,8,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;snake.forEach((p,i)=>{ctx.fillStyle=i?'#1da9a9':'#8cff6b';ctx.shadowColor=ctx.fillStyle;ctx.shadowBlur=i?4:12;ctx.fillRect(p.x*24+2,p.y*24+2,20,20)});ctx.shadowBlur=0}
+function tickSnake(){dir=nextDir;const h={x:snake[0].x+dir.x,y:snake[0].y+dir.y};if(h.x<0||h.x>=20||h.y<0||h.y>=20||snake.some(p=>p.x===h.x&&p.y===h.y)){snakeAlive=false;endGame('بازی تمام شد! برای تلاش دوباره «شروع دوباره» را بزن.');return}snake.unshift(h);if(h.x===food.x&&h.y===food.y){setScore(score+10);sound(760);placeFood()}else snake.pop();drawSnake()}
+function changeDir(d){if(current!=='snake')return;const map={up:{x:0,y:-1},down:{x:0,y:1},left:{x:-1,y:0},right:{x:1,y:0}};const v=map[d];if(v&&!(v.x===-dir.x&&v.y===-dir.y))nextDir=v}
+document.addEventListener('keydown',e=>{const m={ArrowUp:'up',w:'up',ArrowDown:'down',s:'down',ArrowLeft:'left',a:'left',ArrowRight:'right',d:'right'};if(m[e.key]&&current){e.preventDefault();if(current==='snake')changeDir(m[e.key]);else if(current==='2048')move2048(m[e.key])}});
+document.querySelectorAll('[data-dir]').forEach(b=>{b.addEventListener('click',()=>changeDir(b.dataset.dir));b.addEventListener('touchstart',e=>{e.preventDefault();changeDir(b.dataset.dir)},{passive:false})});
+// 2048
+let board,over2048=false;
+function start2048(){board=Array(16).fill(0);over2048=false;setScore(0);addTile();addTile();render2048()}
+function addTile(){let empty=board.map((v,i)=>v?null:i).filter(v=>v!==null);if(empty.length)board[empty[Math.floor(Math.random()*empty.length)]]=Math.random()<.9?2:4}
+function render2048(){$('board2048').innerHTML='';board.forEach(v=>{const d=document.createElement('div');d.className='tile';d.dataset.v=v||0;d.textContent=v?fa(v):'';$('board2048').appendChild(d)})}
+function move2048(d){if(current!=='2048'||over2048)return;let rows=[];for(let r=0;r<4;r++)rows.push(board.slice(r*4,r*4+4));if(d==='up'||d==='down')rows=Array.from({length:4},(_,c)=>Array.from({length:4},(_,r)=>board[r*4+c]));let changed=false,gain=0;rows=rows.map(row=>{if(d==='right'||d==='down')row=row.slice().reverse();let a=row.filter(Boolean),out=[];for(let i=0;i<a.length;i++){if(a[i]===a[i+1]){out.push(a[i]*2);gain+=a[i]*2;i++}else out.push(a[i])}while(out.length<4)out.push(0);if(d==='right'||d==='down')out.reverse();return out});let next=Array(16).fill(0);if(d==='up'||d==='down')rows.forEach((row,c)=>row.forEach((v,r)=>next[r*4+c]=v));else rows.forEach((row,r)=>row.forEach((v,c)=>next[r*4+c]=v));changed=next.some((v,i)=>v!==board[i]);if(changed){board=next;setScore(score+gain);addTile();render2048();sound(400+Math.min(gain,800));if(board.includes(2048))$('toast').textContent='آفرین! به ۲۰۴۸ رسیدی!';if(!canMove()){over2048=true;endGame('حرکت دیگری باقی نمانده؛ دوباره تلاش کن.')}}}
+function canMove(){if(board.includes(0))return true;for(let r=0;r<4;r++)for(let c=0;c<4;c++){let i=r*4+c;if(c<3&&board[i]===board[i+1]||r<3&&board[i]===board[i+4])return true}return false}
+let touchStart=null;$('board2048').addEventListener('touchstart',e=>{touchStart={x:e.touches[0].clientX,y:e.touches[0].clientY}},{passive:true});$('board2048').addEventListener('touchend',e=>{if(!touchStart)return;let dx=e.changedTouches[0].clientX-touchStart.x,dy=e.changedTouches[0].clientY-touchStart.y;if(Math.max(Math.abs(dx),Math.abs(dy))>25)move2048(Math.abs(dx)>Math.abs(dy)?(dx>0?'left':'right'):(dy>0?'up':'down'));touchStart=null},{passive:true});
+// MEMORY
+let cards=[],first=null,lock=false,moves=0,matches=0;
+function startMemory(){stop();const icons=['🚀','🎮','👾','💎','⭐','🛸','🎲','🔥'];cards=[...icons,...icons].sort(()=>Math.random()-.5);first=null;lock=false;moves=0;matches=0;setScore(0);$('memoryBoard').innerHTML='';cards.forEach((v,i)=>{let b=document.createElement('button');b.textContent='؟';b.setAttribute('aria-label','کارت پنهان');b.onclick=()=>flipCard(i,b);$('memoryBoard').appendChild(b)})}
+function flipCard(i,b){if(lock||b.classList.contains('open')||b.disabled)return;b.classList.add('open');b.textContent=cards[i];b.disabled=true;sound(520);if(first===null){first={i,b};return}moves++;if(cards[first.i]===cards[i]){matches++;setScore(matches*20);first=null;sound(820);if(matches===8)$('toast').textContent='تبریک! همه جفت‌ها را پیدا کردی؛ تعداد حرکت: '+fa(moves)}else{lock=true;const prev=first;setTimeout(()=>{prev.b.classList.remove('open');prev.b.textContent='؟';prev.b.disabled=false;b.classList.remove('open');b.textContent='؟';b.disabled=false;first=null;lock=false},650)}}
+refreshStats();
+})();
+</script>
+</body>
+</html>
